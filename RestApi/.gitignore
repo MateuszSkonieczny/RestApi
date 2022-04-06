@@ -1,1 +1,4 @@
 appsettings.json
+bin
+RestApi.csproj
+RestApi.sln
