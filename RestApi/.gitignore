@@ -1,4 +1,4 @@
 appsettings.json
-bin
+bin/Debug/net5.0
 RestApi.csproj
 RestApi.sln
