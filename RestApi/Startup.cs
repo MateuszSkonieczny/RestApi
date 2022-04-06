@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RestApi.Models;
+using RestApi.Repositories.Implementations;
+using RestApi.Repositories.Interfaces;
 
 namespace RestApi
 {
@@ -32,6 +34,8 @@ namespace RestApi
             {
                 options.UseSqlServer(Configuration.GetConnectionString("MssqlDbConnString"));
             });
+
+            services.AddScoped<IEmployeeDbRepository, EmployeeMssqlDbRepository>();
             
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "RestApi", Version = "v1"}); });
@@ -50,7 +54,7 @@ namespace RestApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
